@@ -4,5 +4,14 @@ require "sinatra/reloader"
 require "sinatra/activerecord"
 
 get "/" do
-  "Hello world!"
+  @restaurants = Restaurant.all
+  erb :index
+end
+
+get "/restaurants/:id" do
+  p params
+  p params[:id]
+  @restaurant = Restaurant.find(params[:id])
+  p @restaurant
+  erb :show
 end
